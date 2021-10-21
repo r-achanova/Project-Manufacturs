@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Manufacturs.Data;
+using System;
 
 namespace Manufacturs
 {
@@ -6,7 +7,9 @@ namespace Manufacturs
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ManufacturContext db = new ManufacturContext();
+            //db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
         }
     }
 }
