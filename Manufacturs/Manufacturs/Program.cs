@@ -10,6 +10,7 @@ namespace Manufacturs
             ManufacturContext db = new ManufacturContext();
             //db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
+            Display display = new Display();
         }
     }
 }
