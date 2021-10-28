@@ -1,4 +1,5 @@
 ﻿using Manufacturs.Business;
+using Manufacturs.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +42,8 @@ namespace Manufacturs
                 operation = int.Parse(Console.ReadLine());
                 switch (operation)
                 {
-                    // case 1: AddDepartment(); break;
-                    //  case 2: UpdateDepartment(); break;
+                    case 1: AddDepartment(); break;
+                    case 2: UpdateDepartment(); break;
                     //  case 3: ListByDeparment();break
                     // case 4: ListAll(); break;
                     // case 5: AddEmployee(); break;
@@ -54,6 +55,35 @@ namespace Manufacturs
                         break;
                 }
             } while (operation != closeOperationId);
+        }
+
+        private void UpdateDepartment()
+        {
+            Console.WriteLine("Enter ID to update: ");
+            int id = int.Parse(Console.ReadLine());
+            Department department = manufacturBusiness.Get(id);
+            if (department != null)
+            {
+                Console.WriteLine("Enter department name: ");
+                department.Name = Console.ReadLine();
+                Console.WriteLine("Enter department description: ");
+                department.Description = Console.ReadLine();
+                manufacturBusiness.UpdateDepartment(department);
+            }
+            else
+            {
+                Console.WriteLine("Department not found!");
+            }
+        }
+
+        private void AddDepartment()
+        {
+            Department department = new Department();
+            Console.WriteLine("Enter department name:");
+            department.Name = Console.ReadLine();
+            Console.WriteLine("Enter department description:");
+            department.Description = Console.ReadLine();
+            manufacturBusiness.AddDepartment(department);
         }
     }
 }
